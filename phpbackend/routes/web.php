@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+// passing over params to controller to minimise number of routes 
 
-Route::get('apicall', "ApiCallController@peopleApi");
+Route::get('api/{type?}/{id?}', "ApiCallController@apiCall");

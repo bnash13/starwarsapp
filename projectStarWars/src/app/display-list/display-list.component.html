@@ -1,0 +1,5 @@
+<div>
+    <app-display-list-item *ngFor="let item of nameDisplay" [item]="item"></app-display-list-item>
+    <button *ngIf='preP' type="button" class="btn btn-primary" (click)="prevPage()">Back</button>
+    <button *ngIf="nextP" type="button" class="btn btn-primary" (click)="nextPage()">Next</button>
+</div>
