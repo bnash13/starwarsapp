@@ -24,7 +24,7 @@
     <div class="card card-small" tabindex="0">
         <div *ngIf="!loading">
             <table>
-                <td *ngFor="let item of detailDisplay">
+                <td *ngFor="let item of detailDisplay | slice:0:8">
                     <tr>
                         {{ item[0] }}
                     </tr>

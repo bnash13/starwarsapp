@@ -3,6 +3,7 @@ import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { ItemModel } from "../models/ItemModel";
+import { SearchModel } from "../models/SearchModel";
 
 
 @Injectable({
@@ -15,5 +16,9 @@ export class BackendApiService {
 
   getItems(type, page):Observable<ItemModel[]> {
     return this.http.get<ItemModel[]>(`${this.baseUrl}${type}/${page}`);
+  }
+
+  searchItem(type, ref):Observable<SearchModel[]> {
+    return this.http.get<SearchModel[]>(`${this.baseUrl}search/${type}/${ref}`)
   }
 }

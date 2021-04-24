@@ -1,1 +1,7 @@
-<p>manual-search works!</p>
+<div>
+    <input type="text" #searchInput>
+
+    <label><input type="radio" value="people" [ngModel]="searchParam.type" (ngModelChange)="searchParam.type = $event" (change)="searchItem()" checked>Option 1</label>
+    <label><input type="radio" value="planets" [ngModel]="searchParam.type" (ngModelChange)="searchParam.type = $event" (change)="searchItem()">Option 2</label>
+    <label><input type="radio" value="starships" [ngModel]="searchParam.type" (ngModelChange)="searchParam.type = $event" (change)="searchItem()">Option 3</label>
+</div>

@@ -11,13 +11,9 @@ import { BackendApiService } from "../services/backend-api.service";
 })
 export class DisplayListComponent implements OnInit {
 
-  items:ItemModel[];
-  nameDisplay;
-  detailDisplay = [];
-  currentPage = 1;
-  nextP = true;
-  preP = false;
-  loading = true;
+  items:ItemModel[]; nameDisplay; detailDisplay = []; 
+  currentPage:number = 1;
+  nextP:boolean = true; preP:boolean = false; loading: boolean = true;
 
   constructor(private route: ActivatedRoute,
     private backendApi:BackendApiService) { }
@@ -44,12 +40,10 @@ export class DisplayListComponent implements OnInit {
   }
 
   pullDetail(item) {
-    let temp = Object.entries(item);
-    this.detailDisplay = [];
-    for(let i = 0; i < 8; i++) {
-      this.detailDisplay.push(temp[i]);
+    console.log(item);
+    this.detailDisplay = Object.entries(item);
+    console.log(this.detailDisplay)
     }
-  }
 
   nextPage() {
     this.loading = true;

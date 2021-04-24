@@ -22,7 +22,7 @@ class ApiCallController extends Controller
 
     function apiSearchCall($callType, $ref) 
     {
-        $response = Http::withOptions(['verify' => false])->get("https://swapi.dev/api/people/?search=$ref");
+        $response = Http::withOptions(['verify' => false])->get("https://swapi.dev/api/$callType/?search=$ref");
 
         return $response;
     }

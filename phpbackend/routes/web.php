@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('api/{type?}/{id?}', "ApiCallController@apiCall");
 
-Route::get('apisearch/{type?}/{id?}', "ApiCallController@apiSearchCall");
+Route::get('api/search/{type?}/{id?}', "ApiCallController@apiSearchCall");
