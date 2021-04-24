@@ -13,8 +13,11 @@ export class DisplayListComponent implements OnInit {
 
   items:ItemModel[];
   nameDisplay;
+  detailDisplay = [];
   currentPage = 1;
-  nextP; preP;
+  nextP = true;
+  preP = false;
+  loading = true;
 
   constructor(private route: ActivatedRoute,
     private backendApi:BackendApiService) { }
@@ -35,17 +38,30 @@ export class DisplayListComponent implements OnInit {
       this.nameDisplay = this.items['results'];
       this.nextP = this.items['next'];
       this.preP = this.items['previous'];
+      this.pullDetail(this.nameDisplay[0]);
+      this.loading = false;
     });
   }
 
+  pullDetail(item) {
+    let temp = Object.entries(item);
+    this.detailDisplay = [];
+    for(let i = 0; i < 8; i++) {
+      this.detailDisplay.push(temp[i]);
+    }
+  }
+
   nextPage() {
+    this.loading = true;
+    this.nextP = false;
     this.currentPage += 1;
     this.getParams()
   }
 
   prevPage() {
+    this.loading = true;
+    this.preP = false;
     this.currentPage -= 1;
     this.getParams()
   }
-
 }

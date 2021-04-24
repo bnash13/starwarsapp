@@ -1,3 +1,14 @@
-<div>
-    <p>{{ item.name }}</p>
+<div class="card item">
+    <div class="card div">
+        <h1>
+            {{ item.name }} >
+        </h1>
+    </div>
+    <br>
+    <div>
+        <P>
+           | {{ item.gender }} | {{ item.birth_year }}
+           <button type="button" class="btn btn-primary" (click)="pullDetail(1)">test</button>
+        </P>
+    </div>
 </div>

@@ -1,5 +1,44 @@
-<div>
-    <app-display-list-item *ngFor="let item of nameDisplay" [item]="item"></app-display-list-item>
-    <button *ngIf='preP' type="button" class="btn btn-primary" (click)="prevPage()">Back</button>
-    <button *ngIf="nextP" type="button" class="btn btn-primary" (click)="nextPage()">Next</button>
+<div class="card-container">
+    
+    <div class="card" tabindex="0">
+        <div *ngIf="!loading">
+            <div>
+                <div *ngFor="let item of nameDisplay" class="innercard item">
+                    <div class="innercard div">
+                        <button type="button" class="button" (click)="pullDetail(item)">{{ item.name }}</button>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+            <button [disabled]="!preP" type="button" class="btn btn-primary" (click)="prevPage()">Back</button>
+            <button [disabled]="!nextP" type="button" class="btn btn-primary" (click)="nextPage()">Next</button>
+        </div>
+        <div *ngIf="loading">
+            <div class="loading">
+            </div>
+        </div>
+    </div>
+    <div class="card card-spacer">        
+    </div>
+    <div class="card card-small" tabindex="0">
+        <div *ngIf="!loading">
+            <table>
+                <td *ngFor="let item of detailDisplay">
+                    <tr>
+                        {{ item[0] }}
+                    </tr>
+                    <tr>
+                        {{ item[1] }}
+                    </tr>
+                </td>
+            </table>
+        </div>
+        <div>
+            <div *ngIf="loading">
+                <div class="loading">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

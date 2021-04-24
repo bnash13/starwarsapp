@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { DisplayListComponent } from './display-list/display-list.component';
 import { DisplayListItemComponent } from './display-list-item/display-list-item.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ManualSearchComponent } from './manual-search/manual-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DisplayListComponent,
     DisplayListItemComponent,
-    NavBarComponent
+    NavBarComponent,
+    ManualSearchComponent
   ],
   imports: [
     BrowserModule,

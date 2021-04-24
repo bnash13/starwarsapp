@@ -20,4 +20,11 @@ class ApiCallController extends Controller
         return $response;
     }
 
+    function apiSearchCall($callType, $ref) 
+    {
+        $response = Http::withOptions(['verify' => false])->get("https://swapi.dev/api/people/?search=$ref");
+
+        return $response;
+    }
+
 }
