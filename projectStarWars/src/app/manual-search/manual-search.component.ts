@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { fromEvent } from "rxjs";
-import { debounceTime, map, distinctUntilChanged, filter } from "rxjs/operators";
+import { debounceTime, map, distinctUntilChanged } from "rxjs/operators";
 
 import { BackendApiService } from "../services/backend-api.service";
 
@@ -12,38 +12,45 @@ import { BackendApiService } from "../services/backend-api.service";
 export class ManualSearchComponent implements OnInit {
 
   @ViewChild('searchInput', { static: true }) searchInput: ElementRef;
-  isSearching: boolean;
+  isSearching: boolean = false;
 
   searchParam = {name: null, type: "people"};
-  resultData;
+  resultData = null; detailDisplay = []; resultCount = 1;
 
-  constructor( private backednApi:BackendApiService ) {
-    this.isSearching = false;
-   }
+  constructor( private backendApi:BackendApiService ) {}
 
   ngOnInit() {
+    //monitors for changes in search input field and calls searchItem api function
     fromEvent(this.searchInput.nativeElement, 'keyup').pipe(
       map((event: any) => {
         return event.target.value;
       }),
-      
       debounceTime(1000),
       distinctUntilChanged()
     ).subscribe((text: string) => {
       this.isSearching = true;
+      console.log("running")
       this.searchParam.name = text;
       this.searchItem()
     })
   }
 
+  //validates whether search input field is not empty and calls backendApi with category type and search keyword
   searchItem() {
-    if (!this.searchParam.name) {
-      return 0;
+    this.resultData = null;
+    if (this.searchParam.name.length > 2) {
+      this.backendApi.searchItem(this.searchParam.type, this.searchParam.name).subscribe(res => {
+        this.resultData = res['results'];
+        console.log(this.searchParam.name.length)
+        console.log(this.resultCount);
+        this.isSearching = false;
+      })
     }
-    this.backednApi.searchItem(this.searchParam.type, this.searchParam.name).subscribe(res => {
-      this.resultData = res;
-      console.log(this.resultData);
-    })
   }
 
+  pullDetail(item) {
+    console.log(item);
+    this.detailDisplay = Object.entries(item);
+    console.log(this.detailDisplay)
+    }
 }

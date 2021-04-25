@@ -14,11 +14,11 @@ export class BackendApiService {
 
   constructor(private http:HttpClient) { }
 
-  getItems(type, page):Observable<ItemModel[]> {
+  getItems(type:string, page:number):Observable<ItemModel[]> {
     return this.http.get<ItemModel[]>(`${this.baseUrl}${type}/${page}`);
   }
 
-  searchItem(type, ref):Observable<SearchModel[]> {
+  searchItem(type:string, ref:string):Observable<SearchModel[]> {
     return this.http.get<SearchModel[]>(`${this.baseUrl}search/${type}/${ref}`)
   }
 }

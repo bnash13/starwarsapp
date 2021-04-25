@@ -1,8 +1,7 @@
 <div class="card-container">
-    
     <div class="card" tabindex="0">
         <div *ngIf="!loading">
-            <div>
+            
                 <div *ngFor="let item of nameDisplay" class="innercard item">
                     <div class="innercard div">
                         <button type="button" class="button" (click)="pullDetail(item)">{{ item.name }}</button>
@@ -10,33 +9,36 @@
                     <div>
                     </div>
                 </div>
-            </div>
+            
             <button [disabled]="!preP" type="button" class="btn btn-primary" (click)="prevPage()">Back</button>
-            <button [disabled]="!nextP" type="button" class="btn btn-primary" (click)="nextPage()">Next</button>
+            <button type="button" class="btn btn-primary btn-pnum">{{ currentPage }}</button>
+            <button [disabled]="!nextP" type="button" class="btn btn-primary btn-right" (click)="nextPage()">Next</button>
         </div>
         <div *ngIf="loading">
             <div class="loading">
+                loading
             </div>
         </div>
     </div>
-    <div class="card card-spacer">        
-    </div>
+<!--     <div class="card card-spacer">        
+    </div> -->
     <div class="card card-small" tabindex="0">
-        <div *ngIf="!loading">
-            <table>
-                <td *ngFor="let item of detailDisplay | slice:0:8">
-                    <tr>
+        <div *ngIf="!loading" class="detailcolumn">
+            <div class="detailcard">
+                <div *ngFor="let item of detailDisplay | slice:0:8">
+                    <h3>
                         {{ item[0] }}
-                    </tr>
-                    <tr>
+                    </h3>
+                    <p>
                         {{ item[1] }}
-                    </tr>
-                </td>
-            </table>
+                    </p>
+                </div>
+            </div>
         </div>
         <div>
             <div *ngIf="loading">
                 <div class="loading">
+                    loading
                 </div>
             </div>
         </div>

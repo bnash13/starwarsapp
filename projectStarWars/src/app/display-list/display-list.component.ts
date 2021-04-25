@@ -22,6 +22,7 @@ export class DisplayListComponent implements OnInit {
     this.getParams();
   }
 
+  //gets category from route link and calls backendApiService to get data for that category
   getParams() {
     let paramType;
     let paramPage = this.currentPage;
@@ -39,12 +40,14 @@ export class DisplayListComponent implements OnInit {
     });
   }
 
+  //sets the variable where the detailed view portion of the application pulls data
   pullDetail(item) {
     console.log(item);
     this.detailDisplay = Object.entries(item);
     console.log(this.detailDisplay)
     }
 
+  //triggers loading display and calls function to pull updated data depending on page number. 
   nextPage() {
     this.loading = true;
     this.nextP = false;

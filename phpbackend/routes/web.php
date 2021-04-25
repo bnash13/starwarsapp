@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// passing over params to controller to minimise number of routes 
+// passing over the categories as params to controller to minimise number of routes 
 
 Route::get('api/{type?}/{id?}', "ApiCallController@apiCall");
 
