@@ -1,0 +1,63 @@
+<div>
+    <div class="card-container">
+        <input class="btn btn-primary btn-search" type="text" placeholder="Enter blood sample in scanner OR Type Name" #searchInput>
+        <label class="radiocontainer">
+            <input type="radio" value="people" [ngModel]="searchParam.type" (ngModelChange)="searchParam.type = $event" (change)="searchItem()" checked>People
+            <span class="radio"></span>
+        </label>
+        <label class="radiocontainer">
+            <input type="radio" value="planets" [ngModel]="searchParam.type" (ngModelChange)="searchParam.type = $event" (change)="searchItem()">Planets
+            <span class="radio"></span>
+        </label>
+        <label class="radiocontainer">
+            <input type="radio" value="starships" [ngModel]="searchParam.type" (ngModelChange)="searchParam.type = $event" (change)="searchItem()">Starships
+            <span class="radio"></span>
+        </label>
+    </div>
+    <div *ngIf="!isSearching" class="card-container">
+        <div *ngIf="resultData && resultCount > 0" class="card-container">
+            <div class="card" tabindex="0">
+                <div>                 
+                    <div *ngFor="let item of resultData" class="innercard item">
+                        <div class="innercard div">
+                            <button type="button" class="button" (click)="pullDetail(item)">{{ item.name }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-small" tabindex="0">
+                <div class="detailcolumn">
+                    <div class="detailcard">
+                        <div *ngFor="let item of detailDisplay | slice:0:8">
+                            <h3>
+                                {{ item[0] }}
+                            </h3>
+                            <p>
+                                {{ item[1] }}
+                            </p>
+                        </div>
+                        <div *ngIf="detailDisplay.length < 1">
+                            Choose a result
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="resultCount < 1">
+            <button type="button" class="nores">No results Found, try a different keyword</button>
+        </div>
+        <div>
+            
+        </div>
+    </div>
+
+    <div *ngIf="isSearching" class="card-container">
+        <div class="card">
+            <div>
+                <div class="loading">
+                    loading
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

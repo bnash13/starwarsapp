@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+// passing over the categories as params to controller to minimise number of routes 
 
-Route::get('apicall', "ApiCallController@peopleApi");
+Route::get('api/{type?}/{id?}', "ApiCallController@apiCall");
+
+Route::get('api/search/{type?}/{id?}', "ApiCallController@apiSearchCall");

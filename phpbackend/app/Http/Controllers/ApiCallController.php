@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use GuzzleHttp\Client;
+use Facades\App\Repository\ApiResult;
 
 
 class ApiCallController extends Controller
 {
-    //
+    //this function will get the Api data through ApiResult Class which is caching the data.  The function passes on 2 variables (data type and page number).
 
-    function peopleApi() 
+    function apiCall($callType, $pageNum) 
     {
-        $response = Http::withOptions(['verify' => false])->get("https://swapi.dev/api/people/");
+        $response = ApiResult::apiget($callType, $pageNum);
 
-        return $response->body();
+        return $response;
     }
 
+    //This function passes 2 variables (data type and search keyword).
+
+    function apiSearchCall($callType, $ref) 
+    {
+        $response = ApiResult::apiSearch($callType, $ref);
+
+        return $response;
+    }
 
 }
