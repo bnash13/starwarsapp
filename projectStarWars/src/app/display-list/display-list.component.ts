@@ -42,9 +42,7 @@ export class DisplayListComponent implements OnInit {
 
   //sets the variable where the detailed view portion of the application pulls data
   pullDetail(item) {
-    console.log(item);
     this.detailDisplay = Object.entries(item);
-    console.log(this.detailDisplay)
     }
 
   //triggers loading display and calls function to pull updated data depending on page number. 
