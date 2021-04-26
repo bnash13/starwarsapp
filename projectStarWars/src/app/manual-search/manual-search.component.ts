@@ -12,9 +12,9 @@ import { BackendApiService } from "../services/backend-api.service";
 export class ManualSearchComponent implements OnInit {
 
   @ViewChild('searchInput', { static: true }) searchInput: ElementRef;
-  isSearching: boolean = false;
 
-  searchParam = {name: null, type: "people"};
+  isSearching: boolean = false;
+  searchParam = {name: "", type: "people"};
   resultData = null; detailDisplay = []; resultCount = 1;
 
   constructor( private backendApi:BackendApiService ) {}
@@ -38,19 +38,22 @@ export class ManualSearchComponent implements OnInit {
   //validates whether search input field is not empty and calls backendApi with category type and search keyword
   searchItem() {
     this.resultData = null;
-    if (this.searchParam.name.length > 2) {
+    this.detailDisplay = [];
+    if (this.searchParam.name.length > 1) {
+      this.isSearching = true;
       this.backendApi.searchItem(this.searchParam.type, this.searchParam.name).subscribe(res => {
         this.resultData = res['results'];
-        console.log(this.searchParam.name.length)
-        console.log(this.resultCount);
+        this.resultCount = res["count"];
         this.isSearching = false;
       })
+    } else {
+      this.resultCount = 1
+      this.resultData = null;
+      this.isSearching = false;
     }
   }
 
   pullDetail(item) {
-    console.log(item);
     this.detailDisplay = Object.entries(item);
-    console.log(this.detailDisplay)
     }
 }

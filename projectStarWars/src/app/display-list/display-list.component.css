@@ -195,6 +195,7 @@
   }
 
   .card {
+    display: inline-block;
     background-color: transparent;
     height: 550px;
     width: 600px;
@@ -216,13 +217,6 @@
     background-color: transparent;
     height: 550px;
     width: 600px;
-  }
-
-  .card.card-spacer {
-    display: flex;
-    background-image: url('https://empirestech.com/wp-content/uploads/2021/04/binary.gif') !important;
-    height:550px;
-    width: 50px;
   }
 
   .innercard.item {
